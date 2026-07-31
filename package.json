@@ -23,7 +23,9 @@
   },
   "dependencies": {
     "electron-squirrel-startup": "^1.0.0",
-    "steamworks.js": "^0.4.0"
+    "steamworks.js": "^0.4.0",
+    "ev-emitter": "^1.1.1",
+    "jquery": "^3.7.0"
   },
   "devDependencies": {
     "@electron-forge/cli": "6.0.0-beta.52",
