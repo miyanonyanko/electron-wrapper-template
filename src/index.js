@@ -37,27 +37,23 @@ const createWindow = () => {
   mainWindow.loadFile(path.join(__dirname, 'index.html'));
 
   // ===== 新增：页面加载完成后，把Steam功能暴露给网页 =====
-  mainWindow.webContents.on('did-finish-load', () => {
-    // 通过IPC方式让网页可以触发成就
+mainWindow.webContents.on('did-finish-load', () => {
     mainWindow.webContents.executeJavaScript(`
-      window.steamClient = {
-        achievement: {
-          activate: function(id) {
-            const { ipcRenderer } = require('electron');
-            ipcRenderer.send('activate-achievement', id);
-          }
-        },
-        // 可选：获取用户名，方便调试
-        getUserName: function() {
-          const { ipcRenderer } = require('electron');
-          return ipcRenderer.sendSync('get-steam-username');
-        }
-      };
-      console.log('Steam功能已注入到网页！');
+        // 注入 jQuery
+        window.$ = window.jQuery = require('jquery');
+        
+        // 注入 Steam 功能
+        window.steamClient = {
+            achievement: {
+                activate: function(id) {
+                    const { ipcRenderer } = require('electron');
+                    ipcRenderer.send('activate-achievement', id);
+                }
+            }
+        };
+        console.log('Steam功能已注入到网页！');
     `);
-  });
-  // ===== 新增结束 =====
-};
+});
 
 // ===== 新增：监听来自网页的IPC消息 =====
 // 触发成就
