@@ -1,13 +1,13 @@
 const { app, BrowserWindow, ipcMain } = require('electron');
 const path = require('path');
 
-// ===== 新增：Steam成就系统初始化 =====
+// ===== Steam成就系统初始化 =====
 const steamworks = require('steamworks.js');
-const STEAM_APP_ID = 4993110;
+const STEAM_APP_ID = 4993110;  // 换成你自己的 App ID
 let steamClient = null;
 
 try {
-    steamClient = steamworks.SteamClient(STEAM_APP_ID);
+    steamClient = steamworks.init(STEAM_APP_ID);
     console.log('Steam初始化成功！用户:', steamClient.localplayer.getName());
 } catch (error) {
     console.error('Steam初始化失败:', error);
