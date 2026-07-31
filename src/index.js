@@ -3,8 +3,7 @@ const path = require('path');
 
 // ===== 新增：Steam成就系统初始化 =====
 const steamworks = require('steamworks.js');
-// 把 480 换成你自己的 Steam App ID
-const STEAM_APP_ID = 480;
+const STEAM_APP_ID = 4993110;
 let steamClient = null;
 
 try {
