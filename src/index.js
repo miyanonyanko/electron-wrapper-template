@@ -7,7 +7,7 @@ const STEAM_APP_ID = 4993110;
 let steamClient = null;
 
 try {
-    steamClient = steamworks.init(STEAM_APP_ID);
+    steamClient = steamworks.SteamClient(STEAM_APP_ID);
     console.log('Steam初始化成功！用户:', steamClient.localplayer.getName());
 } catch (error) {
     console.error('Steam初始化失败:', error);
