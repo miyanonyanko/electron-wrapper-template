@@ -87,3 +87,5 @@ app.on('activate', () => {
         createWindow();
     }
 });
+
+require('steamworks.js').electronEnableSteamOverlay()
