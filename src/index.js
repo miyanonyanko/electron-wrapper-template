@@ -32,6 +32,10 @@ const createWindow = () => {
 
     mainWindow.loadFile(path.join(__dirname, 'index.html'));
 
+    // ===== 启用 Steam Overlay =====
+    steamworks.electronEnableSteamOverlay();
+    // ===== Steam Overlay 结束 =====
+
     mainWindow.webContents.on('did-finish-load', () => {
         mainWindow.webContents.executeJavaScript(`
             // 注入 jQuery
@@ -49,7 +53,7 @@ const createWindow = () => {
             console.log('Steam功能已注入到网页！');
         `);
     });
-};   // ← createWindow 函数在这里结束
+};
 
 // ===== 监听来自网页的IPC消息（放在 createWindow 外面） =====
 ipcMain.on('activate-achievement', (event, achievementId) => {
@@ -87,5 +91,3 @@ app.on('activate', () => {
         createWindow();
     }
 });
-
-require('steamworks.js').electronEnableSteamOverlay()
